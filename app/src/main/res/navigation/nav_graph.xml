@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchFragment">
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.myapplication.fragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchTableFragment2"
+            app:destination="@id/searchTableFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/searchTableFragment">
+            <argument
+                android:name="keyword"
+                app:argType="string" />
+            <argument
+                android:name="distance"
+                app:argType="integer" />
+            <argument
+                android:name="category"
+                app:argType="string" />
+            <argument
+                android:name="latitude"
+                app:argType="float" />
+            <argument
+                android:name="longitude"
+                app:argType="float" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/searchTableFragment"
+        android:name="com.example.myapplication.fragments.SearchTableFragment"
+        android:label="fragment_search_table"
+        tools:layout="@layout/fragment_search_table" >
+        <argument
+            android:name="keyword"
+            app:argType="string" />
+        <argument
+            android:name="distance"
+            app:argType="integer" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <argument
+            android:name="latitude"
+            app:argType="float" />
+        <argument
+            android:name="longitude"
+            app:argType="float" />
+        <action
+            android:id="@+id/action_searchTableFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_searchTableFragment_to_eventDetails"
+            app:destination="@id/eventDetails">
+<!--            <argument-->
+<!--                android:name="id"-->
+<!--                app:argType="string"/>-->
+<!--            <argument android:name="event_name"-->
+<!--                app:argType="string"/>-->
+        </action>
+    </fragment>
+    <activity
+        android:id="@+id/eventDetails"
+        android:name="com.example.myapplication.EventDetails"
+        android:label="activity_event_details"
+        tools:layout="@layout/activity_event_details">
+        <argument android:name="id"
+            app:argType="string"/>
+        <argument android:name="event_name"
+            app:argType="string"/>
+        <argument
+            android:name="event_model"
+            app:argType="com.example.myapplication.fragments.EventListCardModel" />
+    </activity>
+</navigation>
